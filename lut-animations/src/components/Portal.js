@@ -1,26 +1,26 @@
-import { useEffect, useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { createPortal } from 'react-dom';
+import ReactDOM from 'react-dom';
 
 const portalRoot = document.getElementById('portal');
+class Portal extends React.Component {
+  constructor(props) {
+    super(props);
+    this.el = document.createElement('div');
+  }
 
-const Portal = ({ children }) => {
-  const mainDivRef = useRef(document.createElement('div'));
+  componentDidMount() {
+    portalRoot.appendChild(this.el);
+  }
 
-  useEffect(() => {
-    const mainDiv = mainDivRef.current;
-    if (portalRoot && mainDiv) {
-      portalRoot.appendChild(mainDiv);
-    }
-    return () => {
-      if (portalRoot && mainDiv) {
-        portalRoot.removeChild(mainDiv);
-      }
-    };
-  }, []);
+  componentWillUnmount() {
+    portalRoot.removeChild(this.el);
+  }
 
-  return mainDivRef.current ? createPortal(children, mainDivRef.current) : null;
-};
+  render() {
+    return ReactDOM.createPortal(this.props.children, this.el);
+  }
+}
 
 Portal.propTypes = {
   children: PropTypes.node.isRequired

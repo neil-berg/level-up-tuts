@@ -14,7 +14,7 @@ const Modal = ({ showModal, setShowModal }) => {
     delay: 2,
     from: { opacity: 0, transform: `scale(0.6)` },
     enter: { opacity: 1, transform: `scale(1)` },
-    leave: { opacity: 0 }
+    leave: { opacity: 0, transform: `scale(0.6)` }
   });
 
   return (
@@ -62,9 +62,9 @@ const Container = styled.div`
     left: 0;
     top: 0;
     width: 100%;
+    height: 100vh;
     z-index: 200;
     display: flex;
-    height: 100vh;
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.4);
@@ -72,15 +72,12 @@ const Container = styled.div`
   }
   & .card {
     position: relative;
-    z-index: 10000;
-    animation-duration: 0.75s;
     border-radius: 10px;
     padding: 15px;
     z-index: 201;
+    height: 200px;
     min-width: 320px;
     background-color: white;
-    height: 200px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   }
 `;
 

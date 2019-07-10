@@ -53,7 +53,6 @@ const App = () => {
         <Toggle />
         <TransitionBtn />
         <Checkout isOpen={isNavOpen} />
-        {/* <Modal showModal={showModal} setShowModal={setShowModal} /> */}
         <Portal>
           <Modal showModal={showModal} setShowModal={setShowModal} />
         </Portal>
