@@ -5,12 +5,15 @@ import Toggle from '../components/Toggle';
 import Nav from '../components/Nav';
 import Checkout from '../components/Checkout';
 import TransitionBtn from '../components/Transition';
+import Portal from '../components/Portal';
+import Modal from '../components/Modal';
 
 import logo from '../logo.svg';
 import '../styles/App.css';
 
 const App = () => {
   const [isNavOpen, setNavOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const navAnimation = useSpring({
     transform: isNavOpen
@@ -42,6 +45,7 @@ const App = () => {
         >
           MENU
         </button>
+        <button onClick={() => setShowModal(true)}>Show Modal</button>
         {/* <Nav style={navAnimation} /> */}
       </header>
 
@@ -49,6 +53,10 @@ const App = () => {
         <Toggle />
         <TransitionBtn />
         <Checkout isOpen={isNavOpen} />
+        {/* <Modal showModal={showModal} setShowModal={setShowModal} /> */}
+        <Portal>
+          <Modal showModal={showModal} setShowModal={setShowModal} />
+        </Portal>
       </main>
     </animated.div>
   );
